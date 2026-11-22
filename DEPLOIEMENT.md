@@ -24,6 +24,38 @@ sur le serveur et synchronisé instantanément pour tous les appareils.
 > Une offre payante (2 à 6 €/mois) est toutefois recommandée pour un site professionnel
 > (e-mail du domaine, HTTPS simple, sauvegardes automatiques).
 
+### 🇫🇷 Déploiement spécifique chez LWS
+
+Le site est 100 % compatible avec les offres mutualisées LWS. Pas à pas :
+
+1. **Commandez l'hébergement** : sur [lws.fr](https://www.lws.fr), rubrique
+   *« Hébergement web »* (l'offre **Essentiel** ou supérieure inclut MySQL).
+   Si vous prenez aussi le nom de domaine chez LWS, il est relié automatiquement.
+2. **Choisissez PHP 8.x** : espace client LWS → *« Hébergement »* → **« Configuration
+   PHP »** → sélectionnez **PHP 8.1, 8.2 ou 8.3**.
+3. **Créez la base** : espace client → **« Bases de données MySQL »** → *Créer*.
+   - Nom de la base (un préfixe est ajouté automatiquement, ex. `lwsxxxxx_maxin`),
+   - utilisateur + mot de passe (notez-les : ils serviront dans `config.php`),
+   - Serveur MySQL = **`localhost`** (valeur par défaut chez LWS).
+   - ❌ Rien à importer : tables et menu se créent **automatiquement** à la première visite.
+4. **Envoyez les fichiers** : deux possibilités.
+   - **Gestionnaire de fichiers** LWS (dans la rubrique Hébergement) : glissez-déposez
+     tous les fichiers du projet (y compris le dossier `api/` et les `.htaccess`) —
+     pensez à activer l'affichage des fichiers cachés pour les voir ;
+   - ou **FTP** (FileZilla) : hôte `ftp.votre-domaine.tld`, identifiants créés dans
+     *« Comptes FTP »* → envoyez tout dans le **dossier racine du site** (celui où
+     pointe votre domaine, souvent la racine du compte).
+5. **Créez `api/config.php`** : copiez `api/config.sample.php` puis éditez-le dans le
+   gestionnaire de fichiers avec vos identifiants MySQL (`host` = `localhost`).
+6. **Activez HTTPS** : espace client → **« SSL »** → demandez le certificat **Let's
+   Encrypt gratuit** pour votre domaine, puis cochez l'option *forcer HTTPS* si proposée.
+7. **Testez** : ouvrez votre domaine, puis `https://votre-domaine.tld/api/?action=public`
+   (doit retourner du JSON avec le menu). Connectez-vous à l'admin et **changez le PIN**.
+
+> 💡 Si une page affiche une erreur 500 chez LWS, vérifiez d'abord que la version PHP
+> sélectionnée est bien 7.4+ puis consultez les **« journaux d'erreurs »** de la rubrique
+> Hébergement.
+
 ---
 
 ## 2. Créer la base de données (5 minutes)
