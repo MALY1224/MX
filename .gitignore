@@ -1,0 +1,14 @@
+# Identifiants de base de données — jamais dans le dépôt
+api/config.php
+
+# Base SQLite locale et journaux
+api/data/
+api/data/*
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# Artefacts système
+.DS_Store
+Thumbs.db
