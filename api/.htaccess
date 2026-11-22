@@ -1,0 +1,8 @@
+# N'expose que le point d'entrée de l'API. Les fichiers sensibles (config, données) restent privés.
+<FilesMatch "\.(sqlite|sqlite-wal|sqlite-shm|db)$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "^(config\.php|config\.sample\.php|seed-data\.php|bootstrap\.php)$">
+    Require all denied
+</FilesMatch>
+Options -Indexes
